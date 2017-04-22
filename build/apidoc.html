@@ -1,0 +1,322 @@
+<div class="apidocDiv">
+<style>
+/*csslint
+*/
+.apidocDiv {
+    background: #fff;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.apidocDiv a[href] {
+    color: #33f;
+    font-weight: bold;
+    text-decoration: none;
+}
+.apidocDiv a[href]:hover {
+    text-decoration: underline;
+}
+.apidocCodeCommentSpan {
+    background: #bbf;
+    color: #000;
+    display: block;
+}
+.apidocCodeKeywordSpan {
+    color: #d00;
+    font-weight: bold;
+}
+.apidocCodePre {
+    background: #eef;
+    border: 1px solid;
+    color: #777;
+    padding: 5px;
+    white-space: pre-wrap;
+}
+.apidocFooterDiv {
+    margin-top: 20px;
+    text-align: center;
+}
+.apidocModuleLi {
+    margin-top: 10px;
+}
+.apidocSectionDiv {
+    border-top: 1px solid;
+    margin-top: 20px;
+}
+.apidocSignatureSpan {
+    color: #777;
+    font-weight: bold;
+}
+</style>
+<h1>api documentation for
+    <a
+
+        href="https://github.com/pwmckenna/node-travis-ci"
+
+    >travis-ci (v2.1.1)</a>
+</h1>
+<h4>node library to access the Travis-CI API</h4>
+<div class="apidocSectionDiv"><a
+    href="#apidoc.tableOfContents"
+    id="apidoc.tableOfContents"
+><h1>table of contents</h1></a><ol>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.travis-ci">module travis-ci</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.travis-ci.travis-ci">
+            function <span class="apidocSignatureSpan"></span>travis-ci
+            <span class="apidocSignatureSpan">(config)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.travis-ci.super_">
+            function <span class="apidocSignatureSpan">travis-ci.</span>super_
+            <span class="apidocSignatureSpan">(pro, headers)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">travis-ci.</span>super_.prototype</span>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.travis-ci.super_">module travis-ci.super_</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.travis-ci.super_.super_">
+            function <span class="apidocSignatureSpan">travis-ci.</span>super_
+            <span class="apidocSignatureSpan">(pro, headers)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.travis-ci.super_.prototype">module travis-ci.super_.prototype</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.travis-ci.super_.prototype._getAccessToken">
+            function <span class="apidocSignatureSpan">travis-ci.super_.prototype.</span>_getAccessToken
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.travis-ci.super_.prototype._getHeaders">
+            function <span class="apidocSignatureSpan">travis-ci.super_.prototype.</span>_getHeaders
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.travis-ci.super_.prototype.request">
+            function <span class="apidocSignatureSpan">travis-ci.super_.prototype.</span>request
+            <span class="apidocSignatureSpan">(method, path, data, callback)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.travis-ci.super_.prototype.setAccessToken">
+            function <span class="apidocSignatureSpan">travis-ci.super_.prototype.</span>setAccessToken
+            <span class="apidocSignatureSpan">(accessToken)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+</ol></div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.travis-ci" id="apidoc.module.travis-ci">module travis-ci</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.travis-ci.travis-ci" id="apidoc.element.travis-ci.travis-ci">
+        function <span class="apidocSignatureSpan"></span>travis-ci
+        <span class="apidocSignatureSpan">(config)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">travis-ci = function (config) {
+    this.pro = config.pro || false;
+    this.agent = new TravisHttp(this.pro, config.headers);
+
+    if (!config.hasOwnProperty(&#x27;version&#x27;)) {
+        throw &#x27;must specify api version&#x27;;
+    }
+
+    var version = config.version;
+    var routes = _(require(&#x27;../api/v&#x27; + version + &#x27;/routes.json&#x27;)).pluck(&#x27;routes&#x27;).flatten(true).map(function (route) {
+        route[TEMP_URI] = _(route.uri.split(&#x27;/&#x27;)).compact().value().join(&#x27;/&#x27;);
+        return route;
+    }).value();
+
+    createFunctionTree(this, this, getRouteTree(routes), &#x27;&#x27;);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.travis-ci.super_" id="apidoc.element.travis-ci.super_">
+        function <span class="apidocSignatureSpan">travis-ci.</span>super_
+        <span class="apidocSignatureSpan">(pro, headers)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">super_ = function (pro, headers) {
+    this._endpoint = pro ? TRAVIS_PRO_ENDPOINT : TRAVIS_ENDPOINT;
+    this._headers = headers ? JSON.parse(JSON.stringify(headers)) : {};
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.travis-ci.super_" id="apidoc.module.travis-ci.super_">module travis-ci.super_</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.travis-ci.super_.super_" id="apidoc.element.travis-ci.super_.super_">
+        function <span class="apidocSignatureSpan">travis-ci.</span>super_
+        <span class="apidocSignatureSpan">(pro, headers)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">super_ = function (pro, headers) {
+    this._endpoint = pro ? TRAVIS_PRO_ENDPOINT : TRAVIS_ENDPOINT;
+    this._headers = headers ? JSON.parse(JSON.stringify(headers)) : {};
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.travis-ci.super_.prototype" id="apidoc.module.travis-ci.super_.prototype">module travis-ci.super_.prototype</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.travis-ci.super_.prototype._getAccessToken" id="apidoc.element.travis-ci.super_.prototype._getAccessToken">
+        function <span class="apidocSignatureSpan">travis-ci.super_.prototype.</span>_getAccessToken
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">_getAccessToken = function () {
+    return this._accessToken;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.travis-ci.super_.prototype._getHeaders" id="apidoc.element.travis-ci.super_.prototype._getHeaders">
+        function <span class="apidocSignatureSpan">travis-ci.super_.prototype.</span>_getHeaders
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">_getHeaders = function () {
+    var headers = JSON.parse(JSON.stringify(this._headers));
+    headers.Accept = &#x27;application/vnd.travis-ci.2+json, */*; q=0.01&#x27;;
+    if (this._getAccessToken()) {
+        headers.Authorization = &#x27;token &#x27; + this._getAccessToken();
+    }
+    return headers;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.travis-ci.super_.prototype.request" id="apidoc.element.travis-ci.super_.prototype.request">
+        function <span class="apidocSignatureSpan">travis-ci.super_.prototype.</span>request
+        <span class="apidocSignatureSpan">(method, path, data, callback)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">request = function (method, path, data, callback) {
+    if (typeof data === &#x27;function&#x27;) {
+        callback = data;
+        data = undefined;
+    }
+
+    var options = {
+        method: method,
+        url: this._endpoint + path,
+        headers: this._getHeaders()
+    };
+
+    if (data instanceof Buffer) {
+        options.body = data;
+    } else {
+        options.json = data || true;
+    }
+    return request(options, function (err, res) {
+        if (err) {
+            return callback(err);
+        }
+
+        if (res.headers[&#x27;content-type&#x27;] === &#x27;application/json&#x27; &#x26;&#x26; !options.json) {
+            res.body = JSON.parse(res.body);
+        }
+
+        if (res.statusCode &#x3e;= 400) {
+            callback(res.body || res.statusCode);
+        } else {
+            callback(null, res.body);
+        }
+    });
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.travis-ci.super_.prototype.setAccessToken" id="apidoc.element.travis-ci.super_.prototype.setAccessToken">
+        function <span class="apidocSignatureSpan">travis-ci.super_.prototype.</span>setAccessToken
+        <span class="apidocSignatureSpan">(accessToken)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">setAccessToken = function (accessToken) {
+    this._accessToken = accessToken;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocFooterDiv">
+    [ this document was created with
+    <a href="https://github.com/kaizhu256/node-utility2" target="_blank">utility2</a>
+    ]
+</div>
+</div>
